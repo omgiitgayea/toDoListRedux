@@ -4,6 +4,16 @@
 (function () {
     angular.module("myApp", ["ui.router"])
         .config(function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise("/lists");
 
+            $stateProvider
+                .state("lists", {
+                    url: "/lists",
+                    templateUrl: "html/basePage.html"
+                })
+                .state("about", {
+                    url: "/about",
+                    templateUrl: "html/aboutPage.html"
+                })
         });
 })();
