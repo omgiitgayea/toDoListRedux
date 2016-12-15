@@ -1,10 +1,10 @@
 /**
  * Created by Godai Yuusaku on 12/14/2016.
  */
-(function (){
+(function () {
     var myApp = angular.module("myApp", ["ui.router"]);
 
-    myApp.config(function($stateProvider, $urlRouterProvider) {
+    myApp.config(function ($stateProvider, $urlRouterProvider) {
 
     });
 
@@ -26,26 +26,26 @@
             if (this.newList) {
                 this.listArray.push({name: this.newList, items: []});
                 this.newList = "";
-                if (this.listArray.length === 1)
-                {
-                    this.currentList = this.listArray[0];
-                }
+                this.currentList = this.listArray[this.listArray.length - 1];
+
             }
         };
 
-        this.getList = function(listName) {
-            for (var i = 0; i < this.listArray.length; i++)
-            {
-                if (listName === this.listArray[i].name)
-                {
+        this.getList = function (listName) {
+            for (var i = 0; i < this.listArray.length; i++) {
+                if (listName === this.listArray[i].name) {
                     this.currentList = this.listArray[i];
                 }
             }
         };
 
+        this.clear = function ()
+        {
+            this.currentList.items = [];
+        };
+
         this.addItem = function () {
-            if (this.newItem && (this.currentList.items.indexOf(this.newItem) === -1))
-            {
+            if (this.newItem && (this.currentList.items.indexOf(this.newItem) === -1)) {
                 this.currentList.items.push(this.newItem);
                 this.newItem = "";
             }
