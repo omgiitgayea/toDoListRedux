@@ -3,7 +3,7 @@
 <div ng-if="vm.currentList">
     <div>{{vm.currentList.name}}</div>
     <div ng-repeat="item in vm.currentList.items" class="checkbox">
-        <label><input type="checkbox">{{item}}</label>
+        <label><input type="checkbox" ng-model="vm.selected[item]">{{item}}</label>
     </div>
     <button class="btn btn-danger" ng-click="vm.clear()" ng-if="vm.currentList.items.length">Clear List</button>
 </div>
