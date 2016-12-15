@@ -1,0 +1,32 @@
+<h2>{{vm.testing}}</h2>
+
+<div ng-if="vm.currentList">
+    <div>{{vm.currentList.name}}</div>
+    <div ng-repeat="item in vm.currentList.items" class="checkbox">
+        <label><input type="checkbox">{{item}}</label>
+    </div>
+</div>
+
+<form ng-submit="vm.addItem()" ng-if="vm.listArray.length">
+    <div>
+        Add an item to your list:
+        <input type="text" ng-model="vm.newItem" name="text"/>
+    </div>
+</form>
+
+<div>
+    <form ng-submit="vm.addList()">
+        <div>
+            <!--<label class="col-md-2">Create a new list (press Enter when Done):</label>-->
+            <button class="btn btn-primary">Create List</button>
+            <input type="text" ng-model="vm.newList" name="text"/>
+        </div>
+    </form>
+</div>
+
+<div ng-if="vm.listArray.length">
+    <ul class="nav nav-tabs">
+        <li ng-repeat="name in vm.listArray" ng-click="vm.getList(name.name)"><a data-toggle="tab" href="#">{{name.name}}</a>
+        </li>
+    </ul>
+</div>
