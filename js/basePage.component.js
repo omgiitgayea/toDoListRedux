@@ -38,6 +38,7 @@
             for (var i = 0; i < this.listArray.length; i++) {
                 if (listName === this.listArray[i].name) {
                     this.currentList = this.listArray[i];
+                    break;
                 }
             }
         };
@@ -65,6 +66,10 @@
                     delete this.selected[key];
                 }
             }
+            // if (Object.keys(this.selected).length === 0)
+            // {
+            //     this.selected = null;
+            // }
         };
     }
 })();

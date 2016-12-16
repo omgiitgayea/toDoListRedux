@@ -9,7 +9,7 @@
             $stateProvider
                 .state("lists", {
                     url: "/lists",
-                    templateUrl: "html/basePage.html"
+                    template: "<base-page></base-page>"
                 })
                 .state("about", {
                     url: "/about",
