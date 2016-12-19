@@ -1,44 +1,60 @@
-<h2>{{vm.testing}}</h2>
-
-<div ng-if="vm.currentList">
-    <div>{{vm.currentList.name}}</div>
-
-    <div ng-repeat="item in vm.currentList.items" class="checkbox">
-        <label><input type="checkbox" ng-model="vm.selected[item]">{{item}}</label>
-        <span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeItem(item)"></span>
+<div class="basePageContainer">
+    <h2 class="text-center">{{vm.testing}}</h2>
+    <div class="row bottomMargin">
+        <h3 class="col-md-1"></h3>
+        <h3 class="col-md-3">Today is {{vm.date | date : "EEEE"}}.</h3>
+        <h3 class="col-md-6" ng-if="vm.currentList">Here is your {{vm.currentList.name}} to do list for today.</h3>
     </div>
 
-    <button class="btn btn-danger" ng-click="vm.clearCompleted()" ng-if="vm.currentList.items.length && vm.selected">
-        Clear Completed Items
-    </button>
-    <button class="btn btn-danger" ng-click="vm.clear()" ng-if="vm.currentList.items.length">Clear List</button>
-</div>
 
-<div>
-    <form ng-submit="vm.addItem()" ng-if="vm.listArray.length">
-        <div class="form-inline form-group row">
-            <label class="col-md-2">Add an item to your list:</label>
-                <input type="text" class="form-control" ng-model="vm.newItem" name="text"/>
-
+    <div ng-if="vm.currentList">
+        <div ng-repeat="item in vm.currentList.items" class="checkbox">
+            <div class="col-md-4"></div>
+            <label><input type="checkbox" ng-model="vm.selected[item]" ng-click="vm.sendSelected()">{{item}}</label>
+            <span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeItem(item)"></span>
         </div>
-    </form>
-</div>
+    </div>
 
-<div>
-    <form ng-submit="vm.addList()">
-        <div class="form-group">
-            <!--<label class="col-md-2">Create a new list (press Enter when Done):</label>-->
-            <label class="form-inline">
-                <input type="text" class="form-control" ng-model="vm.newList" name="text"/>
-                <button class="btn btn-primary">Create List</button>
-            </label>
+    <div>
+        <form ng-submit="vm.addItem()" ng-if="vm.listArray.length">
+            <div class="form-inline form-group row">
+                <div class="col-md-1"></div>
+                <label class="col-md-3">Add an item to your list:</label>
+                <input type="text" class="bottomBorder" ng-model="vm.newItem" name="text"/>
+
+
+            </div>
+        </form>
+    </div>
+
+    <div ng-if="vm.currentList">
+        <div class="row bottomMargin">
+            <div class="col-md-4"></div>
+            <div class="col-md-3">
+                <button class="btn btn-warning" ng-click="vm.clearCompleted()" ng-if="vm.currentList.items.length">
+                    Clear Completed Items
+                </button>
+            </div>
+            <button class="btn btn-danger" ng-click="vm.clear()" ng-if="vm.currentList.items.length">Clear List</button>
         </div>
-    </form>
-</div>
+    </div>
 
-<div ng-if="vm.listArray.length">
-    <ul class="nav nav-tabs">
-        <li ng-repeat="name in vm.listArray" ng-click="vm.getList(name.name)"><a data-toggle="tab" href="#">{{name.name}}</a>
-        </li>
-    </ul>
+    <div>
+        <form ng-submit="vm.addList()">
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <label class="form-inline">
+                    <input type="text" class="bottomBorder" ng-model="vm.newList" name="text"/>
+                    <button class="btn btn-primary">Create List</button>
+                </label>
+            </div>
+        </form>
+    </div>
+
+    <div ng-if="vm.listArray.length">
+        <ul class="nav nav-tabs myFooter">
+            <li ng-repeat="name in vm.listArray" ng-click="vm.getList(name.name)"><a data-toggle="tab" href="#">{{name.name}}</a>
+            </li>
+        </ul>
+    </div>
 </div>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Procrastinators Beware!! List Ahead!!</title>
     <link rel="stylesheet" href="public/thirdParty/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/myStyles.css">
     <script src="public/thirdParty/jquery/dist/jquery.js"></script>
     <script src="public/thirdParty/angular/angular.js"></script>
     <script src="public/thirdParty/angular-ui-router/release/angular-ui-router.js"></script>
@@ -12,9 +13,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Ahhhh!</h1>
-        <a ui-sref="lists">Lists</a>
-        <a ui-sref="about">About</a>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Choose Your Own To Do List!</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ui-sref="lists">Lists</a></li>
+                    <li><a ui-sref="about">About</a></li>
+                </ul>
+            </div>
+        </nav>
         <div ui-view></div>
     </div>
 </body>
