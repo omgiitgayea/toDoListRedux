@@ -11,11 +11,12 @@
             controllerAs: "vm"
         })
         .service("BasePageService", function ($localStorage) {
-            if ($localStorage.lists)
-                this.listArray = $localStorage.lists;
-            else
-                this.listArray = [];
             this.currentList;
+            this.listArray = []
+            if ($localStorage.lists) {
+                this.listArray = $localStorage.lists;
+                this.currentList = this.listArray[0];
+            }
             this.newItem;
             this.selected = null;
 
