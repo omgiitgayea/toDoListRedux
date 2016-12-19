@@ -2,7 +2,7 @@
  * Created by Godai Yuusaku on 12/14/2016.
  */
 (function () {
-    angular.module("myApp", ["ui.router"])
+    angular.module("myApp", ["ui.router", "ngStorage"])
         .config(function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/lists");
 
@@ -15,5 +15,5 @@
                     url: "/about",
                     templateUrl: "html/aboutPage.html"
                 })
-        });
+        })
 })();

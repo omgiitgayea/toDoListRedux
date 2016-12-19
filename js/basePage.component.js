@@ -10,8 +10,11 @@
             controller: basePageController,
             controllerAs: "vm"
         })
-        .service("BasePageService", function () {
-            this.listArray = [];
+        .service("BasePageService", function ($localStorage) {
+            if ($localStorage.lists)
+                this.listArray = $localStorage.lists;
+            else
+                this.listArray = [];
             this.currentList;
             this.newItem;
             this.selected = null;
@@ -77,7 +80,7 @@
         });
 
 
-    function basePageController(BasePageService) {
+    function basePageController(BasePageService, $localStorage) {
         this.listArray = BasePageService.listArray;
         this.currentList = BasePageService.currentList;
         this.selected = BasePageService.selected;
@@ -85,6 +88,7 @@
         this.date = new Date();
         this.newList;
         this.newItem;
+        this.$storage = $localStorage;
 
         this.addList = function () {
             BasePageService.addList(this.newList);
@@ -118,6 +122,25 @@
 
         this.sendSelected = function () {
             BasePageService.setSelected(this.selected);
+        };
+
+        this.deleteLists = function() {
+            $localStorage.$reset();
+            this.$storage = null;
+            this.listArray = [];
+            this.currentList = null;
+        };
+
+        this.editItem = function () {
+            console.log("click!");
+        };
+
+        this.editList = function () {
+            console.log("edit!");
+        };
+
+        this.removeList = function (list) {
+            console.log(list);
         }
     }
 })();

@@ -1,4 +1,4 @@
-<div class="basePageContainer">
+<div class="basePageContainer" ng-init="vm.$storage.lists = vm.listArray">
     <h2 class="text-center">{{vm.testing}}</h2>
     <div class="row bottomMargin">
         <h3 class="col-md-1"></h3>
@@ -10,7 +10,9 @@
     <div ng-if="vm.currentList">
         <div ng-repeat="item in vm.currentList.items" class="checkbox">
             <div class="col-md-4"></div>
-            <label><input type="checkbox" ng-model="vm.selected[item]" ng-click="vm.sendSelected()">{{item}}</label>
+            <label><input type="checkbox" ng-model="vm.selected[item]" ng-click="vm.sendSelected()">{{item}}&nbsp;
+            </label>
+            <span class="glyphicon glyphicon-pencil text-primary" ng-click="vm.editItem()">&nbsp;</span>
             <span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeItem(item)"></span>
         </div>
     </div>
@@ -51,9 +53,18 @@
         </form>
     </div>
 
+    <div>
+        <button class="btn btn-danger" ng-click="vm.deleteLists()" ng-if="vm.listArray.length">Delete Lists</button>
+    </div>
+
     <div ng-if="vm.listArray.length">
         <ul class="nav nav-tabs myFooter">
-            <li ng-repeat="name in vm.listArray" ng-click="vm.getList(name.name)"><a data-toggle="tab" href="#">{{name.name}}</a>
+            <li ng-repeat="name in vm.listArray" >
+                <a data-toggle="tab" href="#">
+                    <span ng-click="vm.getList(name.name)">{{name.name}} &nbsp;</span>
+                    <span class="glyphicon glyphicon-pencil text-primary" ng-click="vm.editList()">&nbsp;</span>
+                    <span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeList(name.name)"></span>
+                </a>
             </li>
         </ul>
     </div>
