@@ -12,13 +12,14 @@
         })
         .service("BasePageService", function ($localStorage) {
             this.currentList;
-            this.listArray = []
+            this.listArray = [];
             if ($localStorage.lists) {
                 this.listArray = $localStorage.lists;
                 this.currentList = this.listArray[0];
             }
-            this.newItem;
+            // this.newItem;
             this.selected = null;
+            this.oldName = "";
 
             this.addList = function (newList) {
                 if (newList) {
@@ -47,7 +48,6 @@
 
             this.clear = function () {
                 this.currentList.items = [];
-                // this.selected = null;
             };
 
             this.addItem = function (newItem) {
@@ -77,6 +77,43 @@
             this.setSelected = function(selected)
             {
                 this.selected = selected;
+            };
+
+            this.deleteLists = function () {
+                this.listArray = [];
+                this.currentList = null;
+            };
+
+            // to do
+            this.editItem = function () {
+                console.log("click!");
+            };
+
+            this.saveNewName = function (newListName) {
+                for (var i = 0; i < this.listArray.length; i++)
+                {
+                    if (this.listArray[i].name === this.oldName)
+                    {
+                        this.listArray[i].name = newListName;
+                        break;
+                    }
+                }
+            };
+
+            // to do
+            this.editList = function (oldName) {
+                this.oldName = oldName;
+            };
+
+            this.removeList = function (list) {
+                for (var i = 0; i < this.listArray.length; i++)
+                {
+                    if (this.listArray[i].name === list)
+                    {
+                        this.listArray.splice(i, 1);
+                        break;
+                    }
+                }
             }
         });
 
@@ -90,6 +127,8 @@
         this.newList;
         this.newItem;
         this.$storage = $localStorage;
+        this.editingList = false;
+        this.oldName = "";
 
         this.addList = function () {
             BasePageService.addList(this.newList);
@@ -127,21 +166,39 @@
 
         this.deleteLists = function() {
             $localStorage.$reset();
+            BasePageService.deleteLists();
             this.$storage = null;
             this.listArray = [];
             this.currentList = null;
         };
 
+        // to do
         this.editItem = function () {
-            console.log("click!");
+
+            BasePageService.editItem();
         };
 
-        this.editList = function () {
-            console.log("edit!");
+        this.editList = function (oldName) {
+            this.editingList = true;
+            this.oldName = oldName;
+            BasePageService.editList(this.oldName);
+        };
+
+        this.reset = function () {
+            this.newListName = this.oldName;
+        };
+
+        this.saveNewName = function (newListName) {
+            BasePageService.saveNewName(newListName);
+            this.newListName = "";
+            this.oldName = "";
+            this.editingList = false;
         };
 
         this.removeList = function (list) {
-            console.log(list);
+            BasePageService.removeList(list);
+            if (list === this.currentList.name)
+                this.currentList = BasePageService.listArray[0];
         }
     }
 })();
