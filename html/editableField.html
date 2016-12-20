@@ -1,14 +1,12 @@
-<a data-toggle="tab" href="#">
-    <span ng-switch="name.editing">
-        <form ng-switch-when="true">
-            <input type="text" ng-model="vm.newListName">
-            <button class="btn btn-success" ng-if="name.editing" ng-click="vm.saveNewName(vm.newListName)">Save</button>
-            <button class="btn btn-warning" ng-if="name.editing" ng-click="vm.reset()">Reset</button>
-        </form>
-        <span ng-switch-default ng-click="vm.getList(name.name)">{{name.name}} &nbsp;</span>
-    </span>
-    <span ng-if="!name.editing">
-        <span class="glyphicon glyphicon-pencil text-primary" ng-click="vm.editList(name.name)">&nbsp;</span>
-        <span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeList(name.name)"></span>
-    </span>
-</a>
+<span ng-switch="ef.editingList">
+    <form ng-switch-when="true">
+        <input type="text" ng-model="ef.listName">
+        <button class="btn btn-success" ng-if="ef.editingList" ng-click="ef.saveNewName()">Save</button>
+        <button class="btn btn-warning" ng-if="ef.editingList" ng-click="ef.reset()">Reset</button>
+    </form>
+
+    <span ng-switch-default ng-click="ef.getList(ef.listName)">{{ef.listName}} &nbsp;</span>
+</span>
+
+<span class="glyphicon glyphicon-pencil text-primary" ng-click="ef.editList(ef.listName)" ng-if="!ef.editingList">&nbsp;</span>
+<span class="glyphicon glyphicon-remove-circle text-danger" ng-click="ef.removeList(ef.listName)"></span>

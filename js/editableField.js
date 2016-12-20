@@ -1,40 +1,49 @@
 /**
  * Created by GodaiYuusaku on 12/20/16.
  */
-function EditableFieldController($scope, $element, $attrs) {
-    // var ctrl = this;
-    this.editingList = false;
+angular.module('myApp').component('editableField', {
+    templateUrl: 'html/editableField.html',
+    controller: EditableFieldController,
+    controllerAs: "ef",
+    bindings: {
+        // fieldValue: '<',
+        // fieldType: '@?',
+        // onUpdate: '&',
+        listName: "@"
+    },
+    require: {
+        listCrtl: "^basePage"
+    }
+});
 
-    this.handleModeChange = function() {
-        // if (this.editingList) {
-        //     this.onUpdate({value: this.fieldValue});
-        //     this.fieldValueCopy = this.fieldValue;
-        // }
+function EditableFieldController() {
+    this.editingList = false;
+    this.oldName = "";
+
+    this.getList = function(name)
+    {
+        this.listCrtl.getList(name);
+    };
+
+    this.removeList = function(name)
+    {
+        this.listCrtl.removeList(name);
+    };
+
+    this.editList = function(name)
+    {
+        this.editingList = true;
+        this.oldName = name;
+        this.listCrtl.editList(name);
+    };
+
+    this.saveNewName = function() {
+        this.listCrtl.saveNewName(this.listName);
         this.editingList = false;
+        this.oldName = "";
     };
 
     this.reset = function() {
-        this.fieldValue = this.fieldValueCopy;
-    };
-
-    this.$onInit = function() {
-        // Make a copy of the initial value to be able to reset it later
-        this.oldName = this.fieldValue;
-
-        // Set a default fieldType
-        // if (!this.fieldType) {
-        //     this.fieldType = 'text';
-        // }
-    };
-}
-
-angular.module('heroApp').component('editableField', {
-    templateUrl: 'html/editableField.html',
-    controller: EditableFieldController,
-    controllerAs: "vm",
-    bindings: {
-        fieldValue: '<',
-        fieldType: '@?',
-        onUpdate: '&'
+        this.listName = this.oldName;
     }
-});
+}

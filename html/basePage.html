@@ -69,14 +69,15 @@
         <ul class="nav nav-tabs myFooter">
             <li ng-repeat="name in vm.listArray">
                 <a data-toggle="tab" href="#">
+                    <editable-field list-name="{{name.name}}"></editable-field>
                     <span ng-switch="vm.editingList">
                         <input ng-switch-when="true" type="text" ng-model="vm.newListName">
-                        <span ng-switch-default ng-click="vm.getList(name.name)">{{name.name}} &nbsp;</span>
+                        <!--<span ng-switch-default ng-click="vm.getList(name.name)">{{name.name}} &nbsp;</span>-->
                     </span>
                     <button class="btn btn-success" ng-if="vm.editingList" ng-click="vm.saveNewName(vm.newListName)">Save</button>
                     <button class="btn btn-warning" ng-if="vm.editingList" ng-click="vm.reset()">Reset</button>
-                    <span class="glyphicon glyphicon-pencil text-primary" ng-click="vm.editList(name.name)" ng-if="!vm.editingList">&nbsp;</span>
-                    <span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeList(name.name)"></span>
+                    <!--<span class="glyphicon glyphicon-pencil text-primary" ng-click="vm.editList(name.name)" ng-if="!vm.editingList">&nbsp;</span>-->
+                    <!--<span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeList(name.name)"></span>-->
                 </a>
             </li>
         </ul>

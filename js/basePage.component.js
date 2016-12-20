@@ -19,8 +19,6 @@
         this.newList;
         this.newItem;
         this.$storage = $localStorage;
-        this.editingList = false;
-        this.oldName = "";
 
         this.addList = function () {
             BasePageService.addList(this.newList);
@@ -71,26 +69,19 @@
         };
 
         this.editList = function (oldName) {
-            this.editingList = true;
             this.oldName = oldName;
+            console.log(this.oldName);
             BasePageService.editList(this.oldName);
-        };
-
-        this.reset = function () {
-            this.newListName = this.oldName;
         };
 
         this.saveNewName = function (newListName) {
             BasePageService.saveNewName(newListName);
-            this.newListName = "";
-            this.oldName = "";
-            this.editingList = false;
         };
 
         this.removeList = function (list) {
             BasePageService.removeList(list);
             if (list === this.currentList.name)
                 this.currentList = BasePageService.listArray[0];
-        }
+        };
     }
 })();
