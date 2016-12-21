@@ -69,9 +69,7 @@
         };
 
         this.editList = function (oldName) {
-            this.oldName = oldName;
-            console.log(this.oldName);
-            BasePageService.editList(this.oldName);
+            BasePageService.editList(oldName);
         };
 
         this.saveNewName = function (newListName) {

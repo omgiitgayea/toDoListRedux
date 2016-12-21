@@ -1,22 +1,19 @@
 /**
  * Created by GodaiYuusaku on 12/20/16.
  */
-angular.module('myApp').component('editableField', {
-    templateUrl: 'html/editableField.html',
-    controller: EditableFieldController,
-    controllerAs: "ef",
+angular.module('myApp').component('listItems', {
+    templateUrl: 'html/listItems.html',
+    controller: ListItemsController,
+    controllerAs: "lic",
     bindings: {
-        // fieldValue: '<',
-        // fieldType: '@?',
-        // onUpdate: '&',
-        listName: "@"
+        itemName: "@"
     },
     require: {
-        listCrtl: "^basePage"
+        itemCrtl: "^basePage"
     }
 });
 
-function EditableFieldController() {
+function ListItemsController() {
     this.editingList = false;
     this.oldName = "";
 
