@@ -6,6 +6,11 @@ html, body
     height: 100%;
 }
 
+body
+{
+    background-color: red;
+}
+
 .bottomBorder
 {
     border: 0;
@@ -21,10 +26,48 @@ html, body
 
 .basePageContainer
 {
-    min-height: 100%
+    min-height: 100%;
 }
 
 .bottomMargin
 {
     margin-bottom: 40px;
+}
+
+.sponsorContainer
+{
+    margin: 0 auto;
+    width: 30%;
+    background-color: transparent;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px black;
+}
+
+.aboutContainer
+{
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/congruent_outline.png");
+    color: gold;
+    height: 1000px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.myContainer
+{
+
+}
+
+.noMargins
+{
+    margin: 0;
+}
+
+.footerText
+{
+    color: black;
+    font-size: 20px;
+    background-color: rgba(200, 200, 200, 0.5);
+    width: 1140px;
 }

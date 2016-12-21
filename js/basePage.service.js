@@ -28,7 +28,6 @@
                         this.currentList = this.listArray[this.listArray.length - 1];
                     }
                 }
-                console.log(this.listArray)
             };
 
             this.getList = function (listName) {

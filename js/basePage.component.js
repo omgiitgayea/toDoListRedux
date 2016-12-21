@@ -36,6 +36,11 @@
         this.addList = function () {
             BasePageService.addList(this.newList);
             this.currentList = BasePageService.currentList;
+            this.listArray = BasePageService.listArray;
+            if (this.$storage.lists === null)
+            {
+                this.$storage.lists = this.listArray;
+            }
             this.newList = "";
         };
 
@@ -70,7 +75,7 @@
         this.deleteLists = function() {
             $localStorage.$reset();
             BasePageService.deleteLists();
-            this.$storage = null;
+            this.$storage.lists = null;
             this.listArray = [];
             this.currentList = null;
         };
