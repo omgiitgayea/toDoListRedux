@@ -14,11 +14,24 @@
         this.listArray = BasePageService.listArray;
         this.currentList = BasePageService.currentList;
         this.selected = BasePageService.selected;
-        this.testing = "Good Morning, Dave";
+        this.greeting = "Good ";
         this.date = new Date();
         this.newList;
         this.newItem;
         this.$storage = $localStorage;
+
+        if(this.date.getHours() < 12)
+        {
+            this.greeting += "Morning, Dave";
+        }
+        else if (this.date.getHours() < 18)
+        {
+            this.greeting += "Afternoon, Dave";
+        }
+        else
+        {
+            this.greeting += "Evening, Dave";
+        }
 
         this.addList = function () {
             BasePageService.addList(this.newList);
@@ -63,9 +76,8 @@
         };
 
         // to do
-        this.editItem = function () {
-
-            BasePageService.editItem();
+        this.saveNewItem = function (oldName, newName) {
+            BasePageService.saveNewItem(oldName, newName);
         };
 
         this.editList = function (oldName) {

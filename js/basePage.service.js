@@ -11,7 +11,6 @@
                 this.listArray = $localStorage.lists;
                 this.currentList = this.listArray[0];
             }
-            // this.newItem;
             this.selected = null;
             this.oldName = "";
 
@@ -78,9 +77,8 @@
                 this.currentList = null;
             };
 
-            // to do
-            this.editItem = function () {
-                console.log("click!");
+            this.saveNewItem = function (oldItem, newItem) {
+                this.currentList.items.splice(this.currentList.items.indexOf(oldItem), 1, newItem);
             };
 
             this.saveNewName = function (newListName) {
@@ -92,7 +90,6 @@
                 }
             };
 
-            // to do
             this.editList = function (oldName) {
                 this.oldName = oldName;
             };

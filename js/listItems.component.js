@@ -22,18 +22,14 @@ function ListItemsController() {
         this.itemCrtl.removeItem(name);
     };
 
-    // to finish
     this.editItem = function(name)
     {
-        console.log(name);
         this.editingList = true;
         this.oldName = name;
-        // this.listCrtl.editList(name);
     };
 
-    // to finish
     this.saveNewItem = function() {
-        // this.listCrtl.saveNewName(this.listName);
+        this.itemCrtl.saveNewItem(this.oldName, this.itemName);
         this.editingList = false;
         this.oldName = "";
     };

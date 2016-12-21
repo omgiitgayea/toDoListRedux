@@ -1,5 +1,5 @@
 <div class="basePageContainer" ng-init="vm.$storage.lists = vm.listArray">
-    <h2 class="text-center">{{vm.testing}}</h2>
+    <h2 class="text-center">{{vm.greeting}}</h2>
     <div class="row bottomMargin">
         <h3 class="col-md-1"></h3>
         <h3 class="col-md-3">Today is {{vm.date | date : "EEEE"}}.</h3>
@@ -12,9 +12,6 @@
             <div class="col-md-4"></div>
             <input type="checkbox" ng-model="vm.selected[item]" ng-click="vm.sendSelected()">
             <list-items item-name="{{item}}"></list-items>
-            <!--{{item}}&nbsp;-->
-            <!--<span class="glyphicon glyphicon-pencil text-primary" ng-click="vm.editItem()">&nbsp;</span>-->
-            <!--<span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeItem(item)"></span>-->
         </div>
     </div>
 
@@ -58,27 +55,11 @@
         <button class="btn btn-danger" ng-click="vm.deleteLists()" ng-if="vm.listArray.length">Delete Lists</button>
     </div>
 
-    <!--<span ng-switch="$ctrl.editMode">-->
-        <!--<input ng-switch-when="true" type="{{$ctrl.fieldType}}" ng-model="$ctrl.fieldValue">-->
-        <!--<span ng-switch-default>{{$ctrl.fieldValue}}</span>-->
-    <!--</span>-->
-    <!--<button ng-click="$ctrl.handleModeChange()">{{$ctrl.editMode ? 'Save' : 'Edit'}}</button>-->
-    <!--<button ng-if="$ctrl.editMode" ng-click="$ctrl.reset()">Reset</button>-->
-
-
     <div ng-if="vm.listArray.length">
         <ul class="nav nav-tabs myFooter">
             <li ng-repeat="name in vm.listArray">
                 <a data-toggle="tab" href="#">
                     <editable-field list-name="{{name.name}}"></editable-field>
-                    <span ng-switch="vm.editingList">
-                        <input ng-switch-when="true" type="text" ng-model="vm.newListName">
-                        <!--<span ng-switch-default ng-click="vm.getList(name.name)">{{name.name}} &nbsp;</span>-->
-                    </span>
-                    <button class="btn btn-success" ng-if="vm.editingList" ng-click="vm.saveNewName(vm.newListName)">Save</button>
-                    <button class="btn btn-warning" ng-if="vm.editingList" ng-click="vm.reset()">Reset</button>
-                    <!--<span class="glyphicon glyphicon-pencil text-primary" ng-click="vm.editList(name.name)" ng-if="!vm.editingList">&nbsp;</span>-->
-                    <!--<span class="glyphicon glyphicon-remove-circle text-danger" ng-click="vm.removeList(name.name)"></span>-->
                 </a>
             </li>
         </ul>
