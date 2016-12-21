@@ -17,30 +17,29 @@ function ListItemsController() {
     this.editingList = false;
     this.oldName = "";
 
-    this.getList = function(name)
+    this.removeItem = function(name)
     {
-        this.listCrtl.getList(name);
+        this.itemCrtl.removeItem(name);
     };
 
-    this.removeList = function(name)
+    // to finish
+    this.editItem = function(name)
     {
-        this.listCrtl.removeList(name);
-    };
-
-    this.editList = function(name)
-    {
+        console.log(name);
         this.editingList = true;
         this.oldName = name;
-        this.listCrtl.editList(name);
+        // this.listCrtl.editList(name);
     };
 
-    this.saveNewName = function() {
-        this.listCrtl.saveNewName(this.listName);
+    // to finish
+    this.saveNewItem = function() {
+        // this.listCrtl.saveNewName(this.listName);
         this.editingList = false;
         this.oldName = "";
     };
 
     this.reset = function() {
-        this.listName = this.oldName;
+
+        this.itemName = this.oldName;
     }
 }

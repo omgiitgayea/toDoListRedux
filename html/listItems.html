@@ -1,12 +1,12 @@
-<span ng-switch="ef.editingList">
+<span ng-switch="lic.editingList">
     <form ng-switch-when="true">
-        <input type="text" ng-model="ef.listName">
-        <button class="btn btn-success" ng-if="ef.editingList" ng-click="ef.saveNewName()">Save</button>
-        <button class="btn btn-warning" ng-if="ef.editingList" ng-click="ef.reset()">Reset</button>
+        <input type="text" ng-model="lic.itemName">
+        <button class="btn btn-success" ng-if="lic.editingList" ng-click="lic.saveNewItem()">Save</button>
+        <button class="btn btn-warning" ng-if="lic.editingList" ng-click="lic.reset()">Reset</button>
     </form>
 
-    <span ng-switch-default ng-click="ef.getList(ef.listName)">{{ef.listName}} &nbsp;</span>
+    <span ng-switch-default>{{lic.itemName}} &nbsp;</span>
 </span>
 
-<span class="glyphicon glyphicon-pencil text-primary" ng-click="ef.editList(ef.listName)" ng-if="!ef.editingList">&nbsp;</span>
-<span class="glyphicon glyphicon-remove-circle text-danger" ng-click="ef.removeList(ef.listName)" ng-if="!ef.editingList"></span>
+<span class="glyphicon glyphicon-pencil text-primary" ng-click="lic.editItem(lic.itemName)" ng-if="!lic.editingList">&nbsp;</span>
+<span class="glyphicon glyphicon-remove-circle text-danger" ng-click="lic.removeItem(lic.itemName)" ng-if="!lic.editingList"></span>
