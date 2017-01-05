@@ -35,7 +35,15 @@ function EditableFieldController() {
     };
 
     this.saveNewName = function() {
-        this.listCrtl.saveNewName(this.listName);
+        if(this.listName != this.oldName) {
+            var isNew = this.listCrtl.saveNewName(this.listName);
+            if (!isNew) {
+                this.listName = this.oldName
+            }
+        }
+        else {
+            this.listCrtl.dupListError = false;
+        }
         this.editingList = false;
         this.oldName = "";
     };

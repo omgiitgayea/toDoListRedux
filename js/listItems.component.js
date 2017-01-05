@@ -17,24 +17,25 @@ function ListItemsController() {
     this.editingList = false;
     this.oldName = "";
 
-    this.removeItem = function(name)
-    {
+    this.removeItem = function (name) {
         this.itemCrtl.removeItem(name);
     };
 
-    this.editItem = function(name)
-    {
+    this.editItem = function (name) {
         this.editingList = true;
         this.oldName = name;
     };
 
-    this.saveNewItem = function() {
-        this.itemCrtl.saveNewItem(this.oldName, this.itemName);
+    this.saveNewItem = function () {
+        var isNew = this.itemCrtl.saveNewItem(this.oldName, this.itemName);
+        if (!isNew) {
+            this.itemName = this.oldName;
+        }
         this.editingList = false;
         this.oldName = "";
     };
 
-    this.reset = function() {
+    this.reset = function () {
 
         this.itemName = this.oldName;
     }

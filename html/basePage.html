@@ -21,10 +21,13 @@
                 <div class="col-md-1"></div>
                 <label class="col-md-3">Add an item to your list:</label>
                 <input type="text" class="bottomBorder" ng-model="vm.newItem" name="text"/>
-
-
             </div>
         </form>
+    </div>
+
+    <div ng-if="vm.dupItemError">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">Duplicate items are not allowed</div>
     </div>
 
     <div ng-if="vm.currentList">
@@ -51,13 +54,18 @@
         </form>
     </div>
 
+    <div ng-if="vm.dupListError">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">Duplicate lists are not allowed</div>
+    </div>
+
     <div>
         <button class="btn btn-danger" ng-click="vm.deleteLists()" ng-if="vm.listArray.length">Delete Lists</button>
     </div>
 
     <div ng-if="vm.listArray.length">
         <ul class="nav nav-tabs myFooter">
-            <li ng-repeat="name in vm.listArray">
+            <li ng-repeat="name in vm.listArray" class="myTabs">
                 <a data-toggle="tab" href="#">
                     <editable-field list-name="{{name.name}}"></editable-field>
                 </a>

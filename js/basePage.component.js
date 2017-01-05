@@ -19,6 +19,8 @@
         this.newList;
         this.newItem;
         this.$storage = $localStorage;
+        this.dupItemError = false;
+        this.dupListError = false;
 
         if(this.date.getHours() < 12)
         {
@@ -37,6 +39,7 @@
             BasePageService.addList(this.newList);
             this.currentList = BasePageService.currentList;
             this.listArray = BasePageService.listArray;
+            this.dupListError = BasePageService.dupListError;
             if (this.$storage.lists === null)
             {
                 this.$storage.lists = this.listArray;
@@ -57,6 +60,7 @@
         this.addItem = function () {
             BasePageService.addItem(this.newItem);
             this.currentList = BasePageService.currentList;
+            this.dupItemError = BasePageService.dupItemError;
             this.newItem = "";
         };
 
@@ -82,7 +86,11 @@
 
         // to do
         this.saveNewItem = function (oldName, newName) {
-            BasePageService.saveNewItem(oldName, newName);
+            this.dupItemError = false;
+            if (!BasePageService.saveNewItem(oldName, newName)) {
+                this.dupItemError = true;
+            }
+            return BasePageService.saveNewItem(oldName, newName);
         };
 
         this.editList = function (oldName) {
@@ -90,7 +98,11 @@
         };
 
         this.saveNewName = function (newListName) {
-            BasePageService.saveNewName(newListName);
+            this.dupListError = false;
+            if (!BasePageService.saveNewName(newListName)) {
+                this.dupListError = true;
+            }
+            return BasePageService.saveNewName(newListName);
         };
 
         this.removeList = function (list) {

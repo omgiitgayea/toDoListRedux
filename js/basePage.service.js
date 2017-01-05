@@ -7,6 +7,9 @@
         .service("BasePageService", function ($localStorage) {
             this.currentList;
             this.listArray = [];
+            this.dupListError = false;
+            this.dupItemError = false;
+
             if ($localStorage.lists) {
                 this.listArray = $localStorage.lists;
                 this.currentList = this.listArray[0];
@@ -15,11 +18,13 @@
             this.oldName = "";
 
             this.addList = function (newList) {
+                this.dupListError = false;
                 if (newList) {
                     var inList = false;
                     for (var i = 0; i < this.listArray.length; i++) {
                         if (newList === this.listArray[i].name) {
                             inList = true;
+                            this.dupListError = true;
                             break;
                         }
                     }
@@ -44,8 +49,10 @@
             };
 
             this.addItem = function (newItem) {
+                this.dupItemError = true;
                 if (newItem && (this.currentList.items.indexOf(newItem) === -1)) {
                     this.currentList.items.push(newItem);
+                    this.dupItemError = false;
                 }
             };
 
@@ -77,14 +84,31 @@
             };
 
             this.saveNewItem = function (oldItem, newItem) {
-                this.currentList.items.splice(this.currentList.items.indexOf(oldItem), 1, newItem);
+                if (oldItem === newItem) {
+                    return true;
+                }
+                if (this.currentList.items.indexOf(newItem) === -1) {
+                    this.currentList.items.splice(this.currentList.items.indexOf(oldItem), 1, newItem);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
             };
 
             this.saveNewName = function (newListName) {
+                for (var i = 0; i < this.listArray.length; i++)
+                {
+                    if (this.listArray[i].name === newListName)
+                    {
+                        return false;
+                    }
+                }
                 for (var i = 0; i < this.listArray.length; i++) {
                     if (this.listArray[i].name === this.oldName) {
                         this.listArray[i].name = newListName;
-                        break;
+                        return true;
                     }
                 }
             };
