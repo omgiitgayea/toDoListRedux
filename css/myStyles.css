@@ -41,12 +41,26 @@ body
     margin: 0 auto;
     padding: 10px;
     background-image: url("../images/congruent_outline.png");
-    width: 30%;
+    width: 50%;
     min-height: 200px;
     background-color: transparent;
     border-radius: 5px;
     box-shadow: 5px 5px 5px black;
-    font-size: 20px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.tinyText {
+    font-size: 8px;
+}
+.extraPadding
+{
+    margin-top: 30px;
+    padding: 0;
+}
+
+.sponsorSpacing {
+    margin-bottom: 10px;
 }
 
 .aboutContainer
