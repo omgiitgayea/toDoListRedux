@@ -95,3 +95,9 @@ body
 .myTabs {
     text-shadow: 1px 1px 5px #555;
 }
+
+.error {
+    color: darkred;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
