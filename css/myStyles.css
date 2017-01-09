@@ -101,3 +101,65 @@ body
     font-size: 30px;
     margin-bottom: 20px;
 }
+
+.animate-list.ng-enter {
+    transition: 0.5s linear all;
+    opacity: 0;
+    transform: translateX(100px) scaleX(0);
+}
+
+.animate-list.ng-enter.ng-enter-active {
+    opacity: 1;
+    transform: translateX(0) scaleX(1);
+}
+
+.animate-list.ng-leave {
+    transition: 0.5s linear all;
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+}
+
+.animate-list.ng-leave.ng-leave-active {
+    opacity: 0;
+    transform: translateY(200px) rotate(360deg);
+}
+
+.animate-delete.ng-enter {
+    transition: 0.5s linear all;
+    transform: scaleY(0);
+}
+
+.animate-delete.ng-enter.ng-enter-active {
+    transform: scaleY(1);
+}
+
+.animate-delete.ng-leave {
+    transition: 0.5s linear all;
+    transform: scaleY(1);
+}
+
+.animate-delete.ng-leave.ng-leave-active {
+    transform: scaleY(0);
+}
+
+.animate-item.ng-enter {
+    transition: 0.5s linear all;
+    opacity: 0;
+    transform: scale(1.2) translateX(-100px);
+}
+
+.animate-item.ng-enter.ng-enter-active {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+}
+
+.animate-item.ng-leave {
+    transition: 0.5s linear all;
+    opacity: 1;
+    transform: rotate(0);
+}
+
+.animate-item.ng-leave.ng-leave-active {
+    opacity: 0;
+    transform: rotate(360deg);
+}

@@ -8,7 +8,7 @@
 
 
     <div ng-if="vm.currentList">
-        <div ng-repeat="item in vm.currentList.items" class="checkbox">
+        <div ng-repeat="item in vm.currentList.items" class="checkbox animate-item">
             <div class="col-md-4"></div>
             <input type="checkbox" ng-model="vm.selected[item]" ng-click="vm.sendSelected()">
             <list-items item-name="{{item}}"></list-items>
@@ -60,12 +60,12 @@
     </div>
 
     <div>
-        <button class="btn btn-danger" ng-click="vm.deleteLists()" ng-if="vm.listArray.length">Delete Lists</button>
+        <button class="btn btn-danger animate-delete" ng-click="vm.deleteLists()" ng-if="vm.listArray.length">Delete Lists</button>
     </div>
 
-    <div ng-if="vm.listArray.length">
+    <div ng-if="vm.listArray.length" class="animate-list">
         <ul class="nav nav-tabs myFooter">
-            <li ng-repeat="name in vm.listArray" class="myTabs">
+            <li ng-repeat="name in vm.listArray" class="myTabs animate-list">
                 <a data-toggle="tab" href="#">
                     <editable-field list-name="{{name.name}}"></editable-field>
                 </a>
