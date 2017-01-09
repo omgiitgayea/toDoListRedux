@@ -163,3 +163,12 @@ body
     opacity: 0;
     transform: rotate(360deg);
 }
+
+.animate-routes.ng-enter {
+    transition: 0.5s linear all;
+    transform: scaleX(0);
+}
+
+.animate-routes.ng-enter.ng-enter-active {
+    transform: scaleX(1);
+}
