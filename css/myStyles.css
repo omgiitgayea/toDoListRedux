@@ -145,7 +145,7 @@ body
 .animate-item.ng-enter {
     transition: 0.5s linear all;
     opacity: 0;
-    transform: scale(1.2) translateX(-100px);
+    transform: scale(2) translateX(-100px);
 }
 
 .animate-item.ng-enter.ng-enter-active {
