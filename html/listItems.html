@@ -5,7 +5,7 @@
         <button class="btn btn-warning" ng-if="lic.editingList" ng-click="lic.reset()">Reset</button>
     </form>
 
-    <span ng-switch-default>{{lic.itemName}} &nbsp;</span>
+    <span ng-switch-default>{{lic.itemName | upperFirst}} &nbsp;</span>
 </span>
 
 <span class="glyphicon glyphicon-pencil text-primary" ng-click="lic.editItem(lic.itemName)" ng-if="!lic.editingList">&nbsp;</span>

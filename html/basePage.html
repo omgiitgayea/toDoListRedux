@@ -3,7 +3,7 @@
     <div class="row bottomMargin">
         <h3 class="col-md-1"></h3>
         <h3 class="col-md-3">Today is {{vm.date | date : "EEEE"}}.</h3>
-        <h3 class="col-md-6" ng-if="vm.currentList">Here is your {{vm.currentList.name}} to do list for today.</h3>
+        <h3 class="col-md-6" ng-if="vm.currentList">Here is your {{vm.currentList.name | upperFirst}} to do list for today.</h3>
     </div>
 
 
