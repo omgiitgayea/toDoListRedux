@@ -17,6 +17,8 @@
             this.selected = null;
             this.oldName = "";
 
+            this.myToast = $mdToast.simple().position("top").hideDelay(2000);
+
             this.addList = function (newList) {
                 this.dupListError = false;
                 if (newList) {
@@ -31,9 +33,7 @@
                     if (!inList) {
                         this.listArray.push({name: newList, items: []});
                         this.currentList = this.listArray[this.listArray.length - 1];
-                        $mdToast.show($mdToast.simple()
-                            .textContent("You added the " + newList + " list!")
-                            .hideDelay(1000));
+                        $mdToast.show(this.myToast.textContent("You added the " + newList + " list!"));
                     }
                 }
             };
@@ -45,16 +45,13 @@
                         break;
                     }
                 }
-                $mdToast.show($mdToast.simple()
-                    .textContent("Hey you just changed to the " + listName + " list!")
-                    .hideDelay(1000));
+                $mdToast.show(this.myToast.textContent("Hey you just changed to the " + listName + " list!"));
             };
 
             this.clear = function () {
                 this.currentList.items = [];
-                $mdToast.show($mdToast.simple()
-                    .textContent("Whelp, you just deleted all the items from your list...")
-                    .hideDelay(1000));
+                $mdToast.show(this.myToast
+                    .textContent("Whelp, you just deleted all the items from your list..."));
             };
 
             this.addItem = function (newItem) {
@@ -62,17 +59,13 @@
                 if (newItem && (this.currentList.items.indexOf(newItem) === -1)) {
                     this.currentList.items.push(newItem);
                     this.dupItemError = false;
-                    $mdToast.show($mdToast.simple()
-                        .textContent("You added the " + newItem + " item!")
-                        .hideDelay(1000));
+                    $mdToast.show(this.myToast.textContent("You added the " + newItem + " item!"));
                 }
             };
 
             this.removeItem = function (item) {
                 this.currentList.items.splice(this.currentList.items.indexOf(item), 1);
-                $mdToast.show($mdToast.simple()
-                    .textContent("Goodbye " + item + "!")
-                    .hideDelay(1000));
+                $mdToast.show(this.myToast.textContent("Goodbye " + item + "!"));
             };
 
             this.clearCompleted = function (selected) {
@@ -87,9 +80,7 @@
                     selected = null;
                 }
 
-                $mdToast.show($mdToast.simple()
-                    .textContent("Yay! You accomplished something!")
-                    .hideDelay(1000));
+                $mdToast.show(this.myToast.textContent("Yay! You accomplished something!"));
                 return selected;
             };
 
@@ -100,9 +91,7 @@
             this.deleteLists = function () {
                 this.listArray = [];
                 this.currentList = null;
-                $mdToast.show($mdToast.simple()
-                    .textContent("Congratulations on embracing your inner procrastinator!")
-                    .hideDelay(1000));
+                $mdToast.show(this.myToast.textContent("Congratulations on embracing your inner procrastinator!"));
             };
 
             this.saveNewItem = function (oldItem, newItem) {
@@ -146,9 +135,7 @@
                         break;
                     }
                 }
-                $mdToast.show($mdToast.simple()
-                    .textContent("I guess you don't have to do " + list + "...")
-                    .hideDelay(1000));
+                $mdToast.show(this.myToast.textContent("I guess you don't have to do " + list + "..."));
             }
         });
 })();

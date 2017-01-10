@@ -4,12 +4,13 @@ html, body
     padding: 0;
     width: 100%;
     height: 100%;
+    background-image: url("../images/bo_play_pattern.png");
+    font-family: 'Lemonada', cursive;
 }
 
 body
 {
-    background-image: url("../images/bo_play_pattern.png");
-    font-family: 'Lemonada', cursive;
+
 }
 
 .bottomBorder
@@ -171,4 +172,8 @@ body
 
 .animate-routes.ng-enter.ng-enter-active {
     transform: scaleX(1);
+}
+
+md-toast .md-toast-content{
+    background-color: darkgreen !important;
 }
