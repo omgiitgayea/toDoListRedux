@@ -10,14 +10,14 @@
             controllerAs: "vm"
         });
 
-    function basePageController(BasePageService, $localStorage) {
+    function basePageController(BasePageService, $localStorage, $mdToast) {
         this.listArray = BasePageService.listArray;
         this.currentList = BasePageService.currentList;
         this.selected = BasePageService.selected;
         this.greeting = "Good ";
         this.date = new Date();
-        this.newList;
-        this.newItem;
+        this.newList = "";
+        this.newItem = "";
         this.$storage = $localStorage;
         this.dupItemError = false;
         this.dupListError = false;
@@ -45,6 +45,8 @@
                 this.$storage.lists = this.listArray;
             }
             this.newList = "";
+            // don't know how toast works yet...
+            // $mdToast.show($mdToast.simple().textContent("Boo!"));
         };
 
         this.getList = function (listName) {

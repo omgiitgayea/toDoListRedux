@@ -21,6 +21,7 @@
                 <div class="col-md-1"></div>
                 <label class="col-md-3">Add an item to your list:</label>
                 <input type="text" class="bottomBorder" ng-model="vm.newItem" name="text"/>
+                <button class="btn btn-primary" ng-disabled="vm.newItem.length === 0 || vm.newItem === undefined">Add Item</button>
             </div>
         </form>
     </div>
@@ -48,7 +49,7 @@
                 <div class="col-md-4"></div>
                 <label class="form-inline">
                     <input type="text" class="bottomBorder" ng-model="vm.newList" name="text"/>
-                    <button class="btn btn-primary">Create List</button>
+                    <button class="btn btn-primary" ng-disabled="vm.newList.length === 0 || vm.newList === undefined">Create List</button>
                 </label>
             </div>
         </form>

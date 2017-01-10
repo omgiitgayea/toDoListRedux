@@ -2,7 +2,7 @@
  * Created by Godai Yuusaku on 12/14/2016.
  */
 (function () {
-    angular.module("myApp", ["ui.router", "ngStorage", "ngAnimate"])
+    angular.module("myApp", ["ui.router", "ngStorage", "ngAnimate", "ngMaterial"])
         .config(function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/lists");
 
