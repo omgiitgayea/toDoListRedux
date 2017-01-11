@@ -10,7 +10,7 @@
             controllerAs: "vm"
         });
 
-    function basePageController(BasePageService, $localStorage, $mdToast) {
+    function basePageController(BasePageService, $localStorage, $translate) {
         this.listArray = BasePageService.listArray;
         this.currentList = BasePageService.currentList;
         this.selected = BasePageService.selected;
@@ -21,7 +21,6 @@
         this.$storage = $localStorage;
         this.dupItemError = false;
         this.dupListError = false;
-        // this.toast = $mdToast.simple().textContent("Boo!");
 
         if(this.date.getHours() < 12)
         {
@@ -45,11 +44,7 @@
             {
                 this.$storage.lists = this.listArray;
             }
-
-
             this.newList = "";
-            // don't know how toast works yet...
-
         };
 
         this.getList = function (listName) {
@@ -115,5 +110,9 @@
             if (list === this.currentList.name)
                 this.currentList = BasePageService.listArray[0];
         };
+
+        this.changeLanguage = function (langKey) {
+            $translate.use(langKey);
+        }
     }
 })();
