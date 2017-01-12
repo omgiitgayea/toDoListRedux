@@ -18,10 +18,22 @@
 
             $translateProvider
                 .translations("en", {
-                    GREETING: "Hi!"
+                    TITLE: "Choose Your Own To Do List!",
+                    GREETING: "Hi, {{name}}",
+                    LIST: "List",
+                    ABOUT: "About",
+                    SPONSOR_TITLE: "Choose Your Own To Do List!",
+                    SPONSOR: "is brought to you by:",
+                    PARTICLE: ""
                 })
                 .translations("jp", {
-                    GREETING: "こんにちは"
+                    TITLE: "自分のやるべきことのリストを選ぶ！",
+                    GREETING: "こんにちは、{{name}}",
+                    LIST: "リスト",
+                    ABOUT: "情報",
+                    SPONSOR_TITLE: "自分のやるべきことのリストを選ぶ！は",
+                    SPONSOR: "ご覧のスポンサーの提供でお送りします",
+                    PARTICLE: "は"
                 })
                 .preferredLanguage("en");
         })

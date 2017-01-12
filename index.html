@@ -24,16 +24,13 @@
 <body>
     <div class="container myContainer">
         <nav class="navbar navbar-inverse noMargins">
-            <div>{{"GREETING" | translate}}</div>
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">Choose Your Own To Do List!</a>
+                    <a class="navbar-brand" href="index.html" translate="TITLE"></a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a ui-sref="lists">Lists</a></li>
-                    <li><a ui-sref="about">About</a></li>
-                    <li><button class="btn btn-default" ng-click="changeLanguage('en')">English</button></li>
-                    <li><button class="btn btn-default" ng-click="changeLanguage('jp')">日本語</button></li>
+                    <li><a ui-sref="lists" translate="LIST"></a></li>
+                    <li><a ui-sref="about" translate="ABOUT"></a></li>
                 </ul>
             </div>
         </nav>
