@@ -15,13 +15,14 @@
     <script src="public/thirdParty/angular-aria/angular-aria.js"></script>
     <script src="public/thirdParty/angular-material/angular-material.js"></script>
     <script src="public/thirdParty/angular-translate/angular-translate.js"></script>
+    <script src="public/thirdParty/angular-sanitize/angular-sanitize.js"></script>
     <script src="js/app.js"></script>
     <script src="js/basePage.component.js"></script>
     <script src="js/basePage.service.js"></script>
     <script src="js/editableField.component.js"></script>
     <script src="js/listItems.component.js"></script>
 </head>
-<body>
+<body ng-controller="langController as lc">
     <div class="container myContainer">
         <nav class="navbar navbar-inverse noMargins">
             <div class="container-fluid">
@@ -34,6 +35,11 @@
                 </ul>
             </div>
         </nav>
+
+        <div class="text-center">
+            <button class="btn btn-default" ng-click="lc.changeLanguage('en')">English</button>
+            <button class="btn btn-default" ng-click="lc.changeLanguage('jp')">日本語</button>
+        </div>
         <div ui-view class="animate-routes"></div>
     </div>
 </body>

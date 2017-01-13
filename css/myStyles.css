@@ -177,3 +177,8 @@ body
 md-toast .md-toast-content{
     background-color: darkgreen !important;
 }
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    background-color: darkgray;
+    opacity: 0.5;
+}

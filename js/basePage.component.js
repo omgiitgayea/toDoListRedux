@@ -110,9 +110,5 @@
             if (list === this.currentList.name)
                 this.currentList = BasePageService.listArray[0];
         };
-
-        this.changeLanguage = function (langKey) {
-            $translate.use(langKey);
-        }
     }
 })();

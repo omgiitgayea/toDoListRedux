@@ -1,13 +1,10 @@
-<button class="btn btn-default" ng-click="vm.changeLanguage('en')">English</button>
-<button class="btn btn-default" ng-click="vm.changeLanguage('jp')">日本語</button>
-
 <div class="basePageContainer" ng-init="vm.$storage.lists = vm.listArray">
     <h2 class="text-center">{{vm.greeting}}</h2>
     <h2 class="text-center" translate="GREETING" translate-values="{name: 'Dave'}"></h2>
     <div class="row bottomMargin">
         <h3 class="col-md-1"></h3>
         <h3 class="col-md-3">Today is {{vm.date | date : "EEEE"}}.</h3>
-        <h3 class="col-md-6" ng-if="vm.currentList">Here is your {{vm.currentList.name | upperFirst}} to do list for today.</h3>
+        <h3 class="col-md-6" ng-if="vm.currentList" translate="LIST_NAME_DISPLAY" translate-values="{listName: '{{vm.currentList.name | upperFirst}}'}"></h3>
     </div>
 
 
@@ -23,27 +20,27 @@
         <form ng-submit="vm.addItem()" ng-if="vm.listArray.length">
             <div class="form-inline form-group row">
                 <div class="col-md-1"></div>
-                <label class="col-md-3">Add an item to your list:</label>
+                <label class="col-md-3" translate="ADD_ITEM_PROMPT"></label>
                 <input type="text" class="bottomBorder" ng-model="vm.newItem" name="text"/>
-                <button class="btn btn-primary" ng-disabled="vm.newItem.length === 0 || vm.newItem === undefined">Add Item</button>
+                <button class="btn btn-primary" ng-disabled="vm.newItem.length === 0 || vm.newItem === undefined" translate="ADD_ITEM"></button>
             </div>
         </form>
     </div>
 
-    <div ng-if="vm.dupItemError">
-        <div class="col-md-4"></div>
-        <div class="col-md-8 error">Duplicate items are not allowed</div>
-    </div>
+    <!--<div ng-if="vm.dupItemError">-->
+        <!--<div class="col-md-4"></div>-->
+        <!--<div class="col-md-8 error">Duplicate items are not allowed</div>-->
+    <!--</div>-->
 
     <div ng-if="vm.currentList">
         <div class="row bottomMargin">
             <div class="col-md-4"></div>
             <div class="col-md-3">
-                <button class="btn btn-warning" ng-click="vm.clearCompleted()" ng-if="vm.currentList.items.length">
-                    Clear Completed Items
+                <button class="btn btn-warning" ng-click="vm.clearCompleted()" ng-if="vm.currentList.items.length" translate="CLEAR_COMPLETE">
+
                 </button>
             </div>
-            <button class="btn btn-danger" ng-click="vm.clear()" ng-if="vm.currentList.items.length">Clear List</button>
+            <button class="btn btn-danger" ng-click="vm.clear()" ng-if="vm.currentList.items.length" translate="CLEAR_LIST"></button>
         </div>
     </div>
 
@@ -53,19 +50,19 @@
                 <div class="col-md-4"></div>
                 <label class="form-inline">
                     <input type="text" class="bottomBorder" ng-model="vm.newList" name="text"/>
-                    <button class="btn btn-primary" ng-disabled="vm.newList.length === 0 || vm.newList === undefined">Create List</button>
+                    <button class="btn btn-primary" ng-disabled="vm.newList.length === 0 || vm.newList === undefined" translate="CREATE_LIST"></button>
                 </label>
             </div>
         </form>
     </div>
 
-    <div ng-if="vm.dupListError">
-        <div class="col-md-4"></div>
-        <div class="col-md-8 error">Duplicate lists are not allowed</div>
-    </div>
+    <!--<div ng-if="vm.dupListError">-->
+        <!--<div class="col-md-4"></div>-->
+        <!--<div class="col-md-8 error">Duplicate lists are not allowed</div>-->
+    <!--</div>-->
 
     <div>
-        <button class="btn btn-danger animate-delete" ng-click="vm.deleteLists()" ng-if="vm.listArray.length">Delete Lists</button>
+        <button class="btn btn-danger animate-delete" ng-click="vm.deleteLists()" ng-if="vm.listArray.length" translate="DELETE_LIST"></button>
     </div>
 
     <div ng-if="vm.listArray.length" class="animate-list">

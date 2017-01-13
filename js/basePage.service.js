@@ -35,6 +35,9 @@
                         this.currentList = this.listArray[this.listArray.length - 1];
                         $mdToast.show(this.myToast.textContent("You added the " + newList + " list!"));
                     }
+                    else {
+                        $mdToast.show(this.myToast.textContent("Duplicate Lists are not allowed"));
+                    }
                 }
             };
 
@@ -60,6 +63,9 @@
                     this.currentList.items.push(newItem);
                     this.dupItemError = false;
                     $mdToast.show(this.myToast.textContent("You added the " + newItem + " item!"));
+                }
+                else {
+                    $mdToast.show(this.myToast.textContent("Duplicate Items are not allowed"))
                 }
             };
 
