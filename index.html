@@ -16,6 +16,7 @@
     <script src="public/thirdParty/angular-material/angular-material.js"></script>
     <script src="public/thirdParty/angular-translate/angular-translate.js"></script>
     <script src="public/thirdParty/angular-sanitize/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.4.0.js"></script>
     <script src="js/app.js"></script>
     <script src="js/basePage.component.js"></script>
     <script src="js/basePage.service.js"></script>
@@ -37,8 +38,8 @@
         </nav>
 
         <div class="text-center">
-            <button class="btn btn-default" ng-click="lc.changeLanguage('en')">English</button>
-            <button class="btn btn-default" ng-click="lc.changeLanguage('jp')">日本語</button>
+            <button class="btn btn-default" ng-click="lc.changeLanguage('en')" uib-popover="Press me if you speak English!" popover-trigger="'mouseenter'">English</button>
+            <button class="btn btn-default" ng-click="lc.changeLanguage('jp')" uib-popover="日本語を話すなら押してください" popover-trigger="'mouseenter'">日本語</button>
         </div>
         <div ui-view class="animate-routes"></div>
     </div>

@@ -2,7 +2,7 @@
  * Created by Godai Yuusaku on 12/14/2016.
  */
 (function () {
-    angular.module("myApp", ["ui.router", "ngStorage", "ngAnimate", "ngMaterial", "pascalprecht.translate", "ngSanitize"])
+    angular.module("myApp", ["ui.router", "ngStorage", "ngAnimate", "ngMaterial", "pascalprecht.translate", "ngSanitize", "ui.bootstrap"])
         .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
             $urlRouterProvider.otherwise("/lists");
 
