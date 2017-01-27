@@ -2,7 +2,7 @@
  * Created by Godai Yuusaku on 12/14/2016.
  */
 (function () {
-    angular.module("myApp", ["ui.router", "ngStorage", "ngAnimate", "ngMaterial", "pascalprecht.translate", "ngSanitize", "ui.bootstrap"])
+    angular.module("myApp", ["ui.router", "ngStorage", "ngAnimate", "ngMaterial", "pascalprecht.translate", "ngSanitize", "ui.bootstrap", "firebase"])
         .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
             $urlRouterProvider.otherwise("/lists");
 
@@ -14,6 +14,14 @@
                 .state("about", {
                     url: "/about",
                     templateUrl: "html/aboutPage.html"
+                })
+                .state("register", {
+                    url: "/register",
+                    template: ""
+                })
+                .state("login", {
+                    url: "/login",
+                    template: ""
                 });
 
             $translateProvider
@@ -51,8 +59,8 @@
                 .fallbackLanguage("en")
                 .useSanitizeValueStrategy("sanitize");
         })
-        .filter("upperFirst", function() {
-            return function(text) {
+        .filter("upperFirst", function () {
+            return function (text) {
                 return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
             }
         })
