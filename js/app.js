@@ -64,12 +64,49 @@
                 return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
             }
         })
-        .controller("langController", function ($translate) {
+        .controller("langController", function ($translate, $mdDialog) {
             var lc = this;
+            // while testing Firebase stuff, loggedIn should be true so I don't have to worry about that
+            lc.loggedIn = true;
 
             lc.changeLanguage = function (langKey) {
                 $translate.use(langKey);
-            }
+            };
 
+            lc.startLogin = function (ev) {
+                $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: "html/login.page.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                });
+                lc.loggedIn = true;
+            };
+
+            lc.signUp = function (ev) {
+                $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: "html/register.page.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                });
+                lc.loggedIn = true;
+            };
+
+            function DialogController($scope, $mdDialog) {
+                $scope.hide = function() {
+                    $mdDialog.hide();
+                };
+
+                $scope.cancel = function() {
+                    $mdDialog.cancel();
+                };
+
+                $scope.answer = function(answer) {
+                    $mdDialog.hide(answer);
+                };
+            }
         })
 })();

@@ -9,6 +9,7 @@
             this.listArray = [];
             this.dupListError = false;
             this.dupItemError = false;
+            this.database = firebase.database();
 
             if ($localStorage.lists) {
                 this.listArray = $localStorage.lists;
@@ -34,6 +35,7 @@
                         this.listArray.push({name: newList, items: []});
                         this.currentList = this.listArray[this.listArray.length - 1];
                         $mdToast.show(this.myToast.textContent("You added the " + newList + " list!"));
+                        this.updateDB();
                     }
                     else {
                         $mdToast.show(this.myToast.textContent("Duplicate Lists are not allowed"));
@@ -53,6 +55,7 @@
 
             this.clear = function () {
                 this.currentList.items = [];
+                this.updateDB();
                 $mdToast.show(this.myToast
                     .textContent("Whelp, you just deleted all the items from your list..."));
             };
@@ -63,6 +66,7 @@
                     this.currentList.items.push(newItem);
                     this.dupItemError = false;
                     $mdToast.show(this.myToast.textContent("You added the " + newItem + " item!"));
+                    this.updateDB();
                 }
                 else {
                     $mdToast.show(this.myToast.textContent("Duplicate Items are not allowed"))
@@ -71,6 +75,7 @@
 
             this.removeItem = function (item) {
                 this.currentList.items.splice(this.currentList.items.indexOf(item), 1);
+                this.updateDB();
                 $mdToast.show(this.myToast.textContent("Goodbye " + item + "!"));
             };
 
@@ -85,7 +90,7 @@
                 if (Object.keys(selected).length === 0) {
                     selected = null;
                 }
-
+                this.updateDB();
                 $mdToast.show(this.myToast.textContent("Yay! You accomplished something!"));
                 return selected;
             };
@@ -97,6 +102,7 @@
             this.deleteLists = function () {
                 this.listArray = [];
                 this.currentList = null;
+                this.database.ref().remove();
                 $mdToast.show(this.myToast.textContent("Congratulations on embracing your inner procrastinator!"));
             };
 
@@ -106,6 +112,7 @@
                 }
                 if (this.currentList.items.indexOf(newItem) === -1) {
                     this.currentList.items.splice(this.currentList.items.indexOf(oldItem), 1, newItem);
+                    this.updateDB();
                     return true;
                 }
                 else {
@@ -115,16 +122,15 @@
             };
 
             this.saveNewName = function (newListName) {
-                for (var i = 0; i < this.listArray.length; i++)
-                {
-                    if (this.listArray[i].name === newListName)
-                    {
+                for (var i = 0; i < this.listArray.length; i++) {
+                    if (this.listArray[i].name === newListName) {
                         return false;
                     }
                 }
                 for (var i = 0; i < this.listArray.length; i++) {
                     if (this.listArray[i].name === this.oldName) {
                         this.listArray[i].name = newListName;
+                        this.updateDB();
                         return true;
                     }
                 }
@@ -141,7 +147,22 @@
                         break;
                     }
                 }
+                this.database.ref(list).set(null);
                 $mdToast.show(this.myToast.textContent("I guess you don't have to do " + list + "..."));
-            }
+            };
+
+            this.updateDB = function () {
+                for (var i = 0; i < this.listArray.length; i++) {
+                    if (this.listArray[i].items.length != 0) {
+                        this.database.ref(this.listArray[i].name).set({
+                            items: this.listArray[i].items
+                        });
+                    }
+                    else
+                        this.database.ref(this.listArray[i].name).set({
+                            items: "empty"
+                        });
+                }
+            };
         });
 })();
