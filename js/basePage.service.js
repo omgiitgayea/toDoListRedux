@@ -6,22 +6,43 @@
         .module("myApp")
         .service("BasePageService", function ($localStorage, $mdToast) {
             this.currentList;
-            this.listArray = [];
+            // this.listArray = [];
             this.dupListError = false;
             this.dupItemError = false;
             this.database = firebase.database();
 
-            if ($localStorage.lists) {
-                this.listArray = $localStorage.lists;
-                this.currentList = this.listArray[0];
-            }
+            this.database.ref().once("value").then(function (snapshot) {
+                var testArray = [];
+                if (snapshot.val()) {
+                    for (var item in snapshot.val().list) {
+                        testArray.push({
+                            name: item,
+                            items: snapshot.val().list[item].items === "empty" ? [] : snapshot.val().list[item].items
+                        })
+                    }
+                    this.listArray = testArray;
+                    this.currentList = this.listArray[0];
+                    console.log(this.listArray.length);
+                }
+                else
+                    this.listArray = [];
+            }, function (error) {
+                console.log("Error: " + error.code);
+            });
+
+            // if ($localStorage.lists) {
+            //     this.listArray = $localStorage.lists;
+            //     this.currentList = this.listArray[0];
+            // }
             this.selected = null;
             this.oldName = "";
 
+            // console.log(this.listArray);
             this.myToast = $mdToast.simple().position("top").hideDelay(2000);
 
             this.addList = function (newList) {
                 this.dupListError = false;
+                console.log(this.listArray);
                 if (newList) {
                     var inList = false;
                     for (var i = 0; i < this.listArray.length; i++) {
@@ -36,6 +57,7 @@
                         this.currentList = this.listArray[this.listArray.length - 1];
                         $mdToast.show(this.myToast.textContent("You added the " + newList + " list!"));
                         this.updateDB();
+                        console.log(this.listArray);
                     }
                     else {
                         $mdToast.show(this.myToast.textContent("Duplicate Lists are not allowed"));
@@ -154,12 +176,12 @@
             this.updateDB = function () {
                 for (var i = 0; i < this.listArray.length; i++) {
                     if (this.listArray[i].items.length != 0) {
-                        this.database.ref(this.listArray[i].name).set({
+                        this.database.ref("list/" + this.listArray[i].name).set({
                             items: this.listArray[i].items
                         });
                     }
                     else
-                        this.database.ref(this.listArray[i].name).set({
+                        this.database.ref("list/" + this.listArray[i].name).set({
                             items: "empty"
                         });
                 }

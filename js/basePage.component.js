@@ -18,7 +18,7 @@
         this.date = new Date();
         this.newList = "";
         this.newItem = "";
-        this.$storage = $localStorage;
+        // this.$storage = $localStorage;
         this.dupItemError = false;
         this.dupListError = false;
 
@@ -40,10 +40,10 @@
             this.currentList = BasePageService.currentList;
             this.listArray = BasePageService.listArray;
             this.dupListError = BasePageService.dupListError;
-            if (this.$storage.lists === null)
-            {
-                this.$storage.lists = this.listArray;
-            }
+            // if (this.$storage.lists === null)
+            // {
+            //     this.$storage.lists = this.listArray;
+            // }
             this.newList = "";
         };
 
@@ -77,9 +77,9 @@
         };
 
         this.deleteLists = function() {
-            $localStorage.$reset();
+            // $localStorage.$reset();
             BasePageService.deleteLists();
-            this.$storage.lists = null;
+            // this.$storage.lists = null;
             this.listArray = [];
             this.currentList = null;
         };
