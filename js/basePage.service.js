@@ -6,7 +6,7 @@
         .module("myApp")
         .service("BasePageService", function ($localStorage, $mdToast) {
             this.currentList;
-            // this.listArray = [];
+            this.listArray = [];
             this.dupListError = false;
             this.dupItemError = false;
             this.database = firebase.database();
@@ -22,10 +22,11 @@
                     }
                     this.listArray = testArray;
                     this.currentList = this.listArray[0];
-                    console.log(this.listArray.length);
                 }
                 else
                     this.listArray = [];
+
+                console.log(this.listArray.length);
             }, function (error) {
                 console.log("Error: " + error.code);
             });

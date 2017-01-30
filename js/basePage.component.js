@@ -36,6 +36,10 @@
         }
 
         this.addList = function () {
+            console.log("from component");
+            console.log(this.listArray);
+            console.log(BasePageService.listArray);
+            console.log(BasePageService.database);
             BasePageService.addList(this.newList);
             this.currentList = BasePageService.currentList;
             this.listArray = BasePageService.listArray;
