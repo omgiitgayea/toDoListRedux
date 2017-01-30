@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("myApp")
-        .service("BasePageService", function ($localStorage, $mdToast) {
+        .service("BasePageService", function ($localStorage, $mdToast, $timeout) {
             this.currentList;
             this.listArray = [];
             this.dupListError = false;
