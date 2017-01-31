@@ -9,46 +9,48 @@ angular.module('myApp').component('editableField', {
         listName: "@"
     },
     require: {
-        listCrtl: "^basePage"
+        listCtrl: "^basePage"
     }
 });
 
 function EditableFieldController() {
-    this.editingList = false;
-    this.oldName = "";
+    var vm = this;
+    vm.editingList = false;
+    vm.oldName = "";
 
-    this.getList = function(name)
+    vm.getList = function(name)
     {
-        this.listCrtl.getList(name);
+        vm.listCtrl.getList(name);
     };
 
-    this.removeList = function(name)
+    vm.removeList = function(name)
     {
-        this.listCrtl.removeList(name);
+        vm.listCtrl.removeList(name);
     };
 
-    this.editList = function(name)
+    vm.editList = function(name)
     {
-        this.editingList = true;
-        this.oldName = name;
-        this.listCrtl.editList(name);
+        vm.editingList = true;
+        vm.oldName = name;
+        vm.listCtrl.editList(name);
     };
 
-    this.saveNewName = function() {
-        if(this.listName != this.oldName) {
-            var isNew = this.listCrtl.saveNewName(this.listName);
+    vm.saveNewName = function() {
+        if(vm.listName != vm.oldName) {
+            var isNew = vm.listCtrl.saveNewName(vm.listName);
             if (!isNew) {
-                this.listName = this.oldName
+                vm.listName = vm.oldName
             }
         }
         else {
-            this.listCrtl.dupListError = false;
+            vm.listCtrl.dupListError = false;
         }
-        this.editingList = false;
-        this.oldName = "";
+        vm.listCtrl.updateDB();
+        vm.editingList = false;
+        vm.oldName = "";
     };
 
-    this.reset = function() {
-        this.listName = this.oldName;
+    vm.reset = function() {
+        vm.listName = vm.oldName;
     }
 }

@@ -31,6 +31,7 @@ function ListItemsController() {
         if (!isNew) {
             this.itemName = this.oldName;
         }
+        this.itemCrtl.updateDB();
         this.editingList = false;
         this.oldName = "";
     };
