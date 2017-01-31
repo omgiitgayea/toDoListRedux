@@ -29,7 +29,7 @@
             if (snapshot.val()) {
                 for (var item in snapshot.val().list) {
                     testArray.push({
-                        name: item,
+                        name: snapshot.val().list[item].name,
                         items: snapshot.val().list[item].items === "empty" ? [] : snapshot.val().list[item].items
                     })
                 }
@@ -139,18 +139,16 @@
         };
 
         vm.updateDB = function () {
-            if (vm.listArray.length === 0) {
-                console.log("Empty listArray")
-            }
             for (var i = 0; i < vm.listArray.length; i++) {
                 if (vm.listArray[i].items.length != 0) {
-                    vm.database.ref("list/" + vm.listArray[i].name).set({
+                    vm.database.ref("list/" + i).set({
+                        name: vm.listArray[i].name,
                         items: vm.listArray[i].items
                     });
                 }
                 else {
-                    console.log("empty!");
-                    vm.database.ref("list/" + vm.listArray[i].name).set({
+                    vm.database.ref("list/" + i).set({
+                        name: vm.listArray[i].name,
                         items: "empty"
                     });
                 }
