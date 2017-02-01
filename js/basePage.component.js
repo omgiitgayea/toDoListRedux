@@ -151,6 +151,7 @@
                         name: vm.listArray[i].name,
                         items: "empty"
                     });
+                    console.log("blargh...")
                 }
             }
         };
