@@ -47,7 +47,7 @@
                     ADD_ITEM_PROMPT: "リストにアイテムを加する：",
                     LIST_NAME_DISPLAY: "これは今日の{{listName}}リスト"
                 })
-                .preferredLanguage("jp")
+                .preferredLanguage("en")
                 .fallbackLanguage("en")
                 .useSanitizeValueStrategy("sanitize");
         })
