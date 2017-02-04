@@ -9,7 +9,7 @@ angular.module('myApp').component('editableField', {
         listName: "@"
     },
     require: {
-        listCtrl: "^basePage"
+        listCrtl: "^basePage"
     }
 });
 
@@ -20,32 +20,31 @@ function EditableFieldController() {
 
     vm.getList = function(name)
     {
-        vm.listCtrl.getList(name);
+        vm.listCrtl.getList(name);
     };
 
     vm.removeList = function(name)
     {
-        vm.listCtrl.removeList(name);
+        vm.listCrtl.removeList(name);
     };
 
     vm.editList = function(name)
     {
         vm.editingList = true;
         vm.oldName = name;
-        vm.listCtrl.editList(name);
+        vm.listCrtl.editList(name);
     };
 
     vm.saveNewName = function() {
         if(vm.listName != vm.oldName) {
-            var isNew = vm.listCtrl.saveNewName(vm.listName);
+            var isNew = vm.listCrtl.saveNewName(vm.listName);
             if (!isNew) {
                 vm.listName = vm.oldName
             }
         }
         else {
-            vm.listCtrl.dupListError = false;
+            vm.listCrtl.dupListError = false;
         }
-        vm.listCtrl.updateDB();
         vm.editingList = false;
         vm.oldName = "";
     };

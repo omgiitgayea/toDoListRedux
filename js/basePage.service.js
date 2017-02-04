@@ -11,6 +11,10 @@
             vm.dupListError = false;
             vm.dupItemError = false;
 
+            if ($localStorage.lists) {
+                vm.listArray = $localStorage.lists;
+                vm.currentList = vm.listArray[0];
+            }
             vm.selected = null;
             vm.oldName = "";
 
@@ -82,6 +86,7 @@
                 if (Object.keys(selected).length === 0) {
                     selected = null;
                 }
+
                 $mdToast.show(vm.myToast.textContent("Yay! You accomplished something!"));
                 return selected;
             };
@@ -93,7 +98,6 @@
             vm.deleteLists = function () {
                 vm.listArray = [];
                 vm.currentList = null;
-                // vm.database.ref().remove();
                 $mdToast.show(vm.myToast.textContent("Congratulations on embracing your inner procrastinator!"));
             };
 
@@ -112,8 +116,10 @@
             };
 
             vm.saveNewName = function (newListName) {
-                for (var i = 0; i < vm.listArray.length; i++) {
-                    if (vm.listArray[i].name === newListName) {
+                for (var i = 0; i < vm.listArray.length; i++)
+                {
+                    if (vm.listArray[i].name === newListName)
+                    {
                         return false;
                     }
                 }
@@ -137,6 +143,6 @@
                     }
                 }
                 $mdToast.show(vm.myToast.textContent("I guess you don't have to do " + list + "..."));
-            };
+            }
         });
 })();

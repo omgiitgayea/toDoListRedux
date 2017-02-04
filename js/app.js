@@ -2,7 +2,7 @@
  * Created by Godai Yuusaku on 12/14/2016.
  */
 (function () {
-    angular.module("myApp", ["ui.router", "ngStorage", "ngAnimate", "ngMaterial", "pascalprecht.translate", "ngSanitize", "ui.bootstrap", "firebase"])
+    angular.module("myApp", ["ui.router", "ngStorage", "ngAnimate", "ngMaterial", "pascalprecht.translate", "ngSanitize", "ui.bootstrap"])
         .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
             $urlRouterProvider.otherwise("/lists");
 
@@ -14,14 +14,6 @@
                 .state("about", {
                     url: "/about",
                     templateUrl: "html/aboutPage.html"
-                })
-                .state("register", {
-                    url: "/register",
-                    template: ""
-                })
-                .state("login", {
-                    url: "/login",
-                    template: ""
                 });
 
             $translateProvider
@@ -59,54 +51,17 @@
                 .fallbackLanguage("en")
                 .useSanitizeValueStrategy("sanitize");
         })
-        .filter("upperFirst", function () {
-            return function (text) {
+        .filter("upperFirst", function() {
+            return function(text) {
                 return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
             }
         })
-        .controller("langController", function ($translate, $mdDialog) {
+        .controller("langController", function ($translate) {
             var lc = this;
-            // while testing Firebase stuff, loggedIn should be true so I don't have to worry about that
-            lc.loggedIn = true;
 
             lc.changeLanguage = function (langKey) {
                 $translate.use(langKey);
-            };
-
-            lc.startLogin = function (ev) {
-                $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: "html/login.page.html",
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true
-                });
-                lc.loggedIn = true;
-            };
-
-            lc.signUp = function (ev) {
-                $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: "html/register.page.html",
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true
-                });
-                lc.loggedIn = true;
-            };
-
-            function DialogController($scope, $mdDialog) {
-                $scope.hide = function() {
-                    $mdDialog.hide();
-                };
-
-                $scope.cancel = function() {
-                    $mdDialog.cancel();
-                };
-
-                $scope.answer = function(answer) {
-                    $mdDialog.hide(answer);
-                };
             }
+
         })
 })();

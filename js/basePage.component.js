@@ -10,48 +10,29 @@
             controllerAs: "vm"
         });
 
-    function basePageController(BasePageService, $localStorage, $translate, $timeout) {
+    function basePageController(BasePageService, $localStorage, $translate) {
         var vm = this;
+        vm.listArray = BasePageService.listArray;
         vm.currentList = BasePageService.currentList;
         vm.selected = BasePageService.selected;
         vm.greeting = "Good ";
         vm.date = new Date();
         vm.newList = "";
         vm.newItem = "";
-        // vm.$storage = $localStorage;
+        vm.$storage = $localStorage;
         vm.dupItemError = false;
         vm.dupListError = false;
 
-        // firebase set up
-        vm.database = firebase.database();
-        vm.database.ref().on("value", function (snapshot) {
-            var testArray = [];
-            if (snapshot.val()) {
-                for (var item in snapshot.val().list) {
-                    testArray.push({
-                        name: snapshot.val().list[item].name,
-                        items: snapshot.val().list[item].items === "empty" ? [] : snapshot.val().list[item].items
-                    })
-                }
-                $timeout(function () {
-                    vm.listArray = testArray;
-                    vm.currentList = vm.listArray[0];
-                    BasePageService.listArray = testArray;
-                    BasePageService.currentList = testArray[0];
-                });
-            }
-            else
-                vm.listArray = [];
-        });
-
-        // makes the greeting time of day specific
-        if (vm.date.getHours() < 12) {
+        if(vm.date.getHours() < 12)
+        {
             vm.greeting += "Morning, Dave";
         }
-        else if (vm.date.getHours() < 18) {
+        else if (vm.date.getHours() < 18)
+        {
             vm.greeting += "Afternoon, Dave";
         }
-        else {
+        else
+        {
             vm.greeting += "Evening, Dave";
         }
 
@@ -60,12 +41,11 @@
             vm.currentList = BasePageService.currentList;
             vm.listArray = BasePageService.listArray;
             vm.dupListError = BasePageService.dupListError;
-            // if (vm.$storage.lists === null)
-            // {
-            //     vm.$storage.lists = vm.listArray;
-            // }
+            if (vm.$storage.lists === null)
+            {
+                vm.$storage.lists = vm.listArray;
+            }
             vm.newList = "";
-            vm.updateDB();
         };
 
         vm.getList = function (listName) {
@@ -75,7 +55,6 @@
 
         vm.clear = function () {
             BasePageService.clear();
-            vm.updateDB();
             vm.selected = null;
         };
 
@@ -84,28 +63,24 @@
             vm.currentList = BasePageService.currentList;
             vm.dupItemError = BasePageService.dupItemError;
             vm.newItem = "";
-            vm.updateDB();
         };
 
         vm.removeItem = function (item) {
             BasePageService.removeItem(item);
-            vm.updateDB();
         };
 
         vm.clearCompleted = function () {
             vm.selected = BasePageService.clearCompleted(vm.selected);
-            vm.updateDB();
         };
 
         vm.sendSelected = function () {
             BasePageService.setSelected(vm.selected);
         };
 
-        vm.deleteLists = function () {
-            // $localStorage.$reset();
+        vm.deleteLists = function() {
+            $localStorage.$reset();
             BasePageService.deleteLists();
-            vm.database.ref().remove();
-            // vm.$storage.lists = null;
+            vm.$storage.lists = null;
             vm.listArray = [];
             vm.currentList = null;
         };
@@ -133,27 +108,8 @@
 
         vm.removeList = function (list) {
             BasePageService.removeList(list);
-            vm.database.ref(list).set(null);
             if (list === vm.currentList.name)
                 vm.currentList = BasePageService.listArray[0];
-        };
-
-        vm.updateDB = function () {
-            for (var i = 0; i < vm.listArray.length; i++) {
-                if (vm.listArray[i].items.length != 0) {
-                    vm.database.ref("list/" + i).set({
-                        name: vm.listArray[i].name,
-                        items: vm.listArray[i].items
-                    });
-                }
-                else {
-                    vm.database.ref("list/" + i).set({
-                        name: vm.listArray[i].name,
-                        items: "empty"
-                    });
-                    console.log("blargh...")
-                }
-            }
         };
     }
 })();

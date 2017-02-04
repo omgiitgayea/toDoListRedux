@@ -14,30 +14,30 @@ angular.module('myApp').component('listItems', {
 });
 
 function ListItemsController() {
-    this.editingList = false;
-    this.oldName = "";
+    var vm = this
+    vm.editingList = false;
+    vm.oldName = "";
 
-    this.removeItem = function (name) {
-        this.itemCrtl.removeItem(name);
+    vm.removeItem = function (name) {
+        vm.itemCrtl.removeItem(name);
     };
 
-    this.editItem = function (name) {
-        this.editingList = true;
-        this.oldName = name;
+    vm.editItem = function (name) {
+        vm.editingList = true;
+        vm.oldName = name;
     };
 
-    this.saveNewItem = function () {
-        var isNew = this.itemCrtl.saveNewItem(this.oldName, this.itemName);
+    vm.saveNewItem = function () {
+        var isNew = vm.itemCrtl.saveNewItem(vm.oldName, vm.itemName);
         if (!isNew) {
-            this.itemName = this.oldName;
+            vm.itemName = vm.oldName;
         }
-        this.itemCrtl.updateDB();
-        this.editingList = false;
-        this.oldName = "";
+        vm.editingList = false;
+        vm.oldName = "";
     };
 
-    this.reset = function () {
+    vm.reset = function () {
 
-        this.itemName = this.oldName;
+        vm.itemName = vm.oldName;
     }
 }
