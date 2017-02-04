@@ -110,6 +110,7 @@
                     return true;
                 }
                 else {
+                    $mdToast.show(vm.myToast.textContent("Duplicate Items are not allowed"))
                     return false;
                 }
 
@@ -120,6 +121,7 @@
                 {
                     if (vm.listArray[i].name === newListName)
                     {
+                        $mdToast.show(vm.myToast.textContent("Duplicate Lists are not allowed"));
                         return false;
                     }
                 }
